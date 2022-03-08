@@ -176,30 +176,3 @@
                           (extract-title (io/file (str recipes-directory "/" recipe-filename))))))
           (newline)
           (newline))))))
-
-;; there are ~2.5k recipes each has a unique file name
-
-;; first thoughts are that we should parse the list of recipes
-;; beforehand, sanitising the text and getting a map of word =>
-;; frequency. this gives us data structures which we can lookup words
-;; in in near constant time.
-
-;; we should also parse the title of the recipe, any words matching
-;; here should be a very strong match
-
-;; I guess when the app launches we should parse all recipes which
-;; don't have existing data structures
-
-;; where should we persist the parsed recipe data? configuration optargs?
-
-
-;;; We're now parsing all the recipes and bulind up a cache of
-;;; {"word" {"recipe.txt" 54}}
-;;; this lets us look up search terms in constant time
-
-
-
-;; We now have heuristics for pluralisation and synonyms, this adds extra time onto the parsing of the recipes, we go from ~1.2s to ~3s
-
-
-;; you could also try to add heuristics for commonly misspelled words
